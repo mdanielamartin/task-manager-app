@@ -3,48 +3,48 @@ import { DarkThemeToggle } from "flowbite-react";
 import Image from "next/image";
 
 export default function Home() {
- const CARDS = [
-  {
-    title: "Create Account",
-    description: "Sign up and start organizing your tasks effortlessly.",
-    url: "/signup",
-    icon: (
-      <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeWidth="1.5" d="M12 14a4 4 0 100-8 4 4 0 000 8zM4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1" />
-      </svg>
-    ),
-  },
-  {
-    title: "Manage Tasks",
-    description: "Create, edit, and delete tasks to stay on top of your day.",
-    url: "/login",
-    icon: (
-      <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeWidth="1.5" d="M4 6h16M4 12h8m-8 6h16" />
-      </svg>
-    ),
-  },
-  {
-    title: "Mark as Completed",
-    description: "Finish tasks and track your productivity with one click.",
-    url: "/login",
-    icon: (
-      <svg className="h-9 w-9 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeWidth="1.5" d="M5 13l4 4L19 7" />
-      </svg>
-    ),
-  },
-  {
-    title: "Track Progress",
-    description: "Visualize your task history and completed goals.",
-    url: "/login",
-    icon: (
-      <svg className="h-9 w-9 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeWidth="1.5" d="M4 4v16h16V4H4zm4 12h2v2H8v-2zm4-6h2v8h-2V10zm4-4h2v12h-2V6z" />
-      </svg>
-    ),
-  },
-]
+  const CARDS = [
+    {
+      title: "Create Account",
+      description: "Sign up and start organizing your tasks effortlessly.",
+      url: "/signup",
+      icon: (
+        <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" strokeWidth="1.5" d="M12 14a4 4 0 100-8 4 4 0 000 8zM4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1" />
+        </svg>
+      ),
+    },
+    {
+      title: "Manage Tasks",
+      description: "Create, edit, and delete tasks to stay on top of your day.",
+      url: "/login",
+      icon: (
+        <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" strokeWidth="1.5" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      ),
+    },
+    {
+      title: "Mark as Completed",
+      description: "Finish tasks and track your productivity with one click.",
+      url: "/login",
+      icon: (
+        <svg className="h-9 w-9 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" strokeWidth="1.5" d="M5 13l4 4L19 7" />
+        </svg>
+      ),
+    },
+    {
+      title: "Track Progress",
+      description: "Visualize your task history and completed goals.",
+      url: "/login",
+      icon: (
+        <svg className="h-9 w-9 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" strokeWidth="1.5" d="M4 4v16h16V4H4zm4 12h2v2H8v-2zm4-6h2v8h-2V10zm4-4h2v12h-2V6z" />
+        </svg>
+      ),
+    },
+  ]
 
 
   return (
