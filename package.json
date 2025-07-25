@@ -11,10 +11,14 @@
     "format:check": "prettier . --check"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "flowbite-react": "^0.12.3",
     "next": "^15.4.2",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.61.1",
+    "sweetalert2": "^11.22.2",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

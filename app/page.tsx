@@ -3,125 +3,49 @@ import { DarkThemeToggle } from "flowbite-react";
 import Image from "next/image";
 
 export default function Home() {
-  const CARDS = [
-    {
-      title: "Flowbite React Docs",
-      description:
-        "Learn more on how to get started and use the Flowbite React components",
-      url: "https://flowbite-react.com/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Blocks",
-      description:
-        "Get started with over 450 blocks to build websites even faster",
-      url: "https://flowbite.com/blocks/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M9.143 4H4.857A.857.857 0 0 0 4 4.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 10 9.143V4.857A.857.857 0 0 0 9.143 4Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 20 9.143V4.857A.857.857 0 0 0 19.143 4Zm-10 10H4.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286A.857.857 0 0 0 9.143 14Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Icons",
-      description:
-        "Get started with over 650+ SVG free and open-source icons for your apps",
-      url: "https://flowbite.com/icons/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="M11 6.5h2M11 18h2m-7-5v-2m12 2v-2M5 8h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm0 12h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm12 0h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Zm0-12h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Illustrations",
-      description:
-        "Start using over 50+ SVG illustrations in 3D style to add character to your apps",
-      url: "https://flowbite.com/illustrations/",
-      icon: (
-        <svg
-          className="h-9 w-9 text-gray-500"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-            d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: "Flowbite Pro",
-      description:
-        "Upgrade your development stack with more components and templates from Flowbite",
-      url: "https://flowbite.com/pro/",
-      icon: (
-        <Image
-          alt="Flowbite Pro logo"
-          src="/flowbite.svg"
-          width={36}
-          height={36}
-        />
-      ),
-    },
-    {
-      title: "Flowbite Figma",
-      description:
-        "Use our Figma Design System to design and collaborate better within your team",
-      url: "https://flowbite.com/figma/",
-      icon: <Image alt="Figma logo" src="/figma.svg" width={36} height={36} />,
-    },
-  ];
+ const CARDS = [
+  {
+    title: "Create Account",
+    description: "Sign up and start organizing your tasks effortlessly.",
+    url: "/signup",
+    icon: (
+      <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeWidth="1.5" d="M12 14a4 4 0 100-8 4 4 0 000 8zM4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1" />
+      </svg>
+    ),
+  },
+  {
+    title: "Manage Tasks",
+    description: "Create, edit, and delete tasks to stay on top of your day.",
+    url: "/login",
+    icon: (
+      <svg className="h-9 w-9 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeWidth="1.5" d="M4 6h16M4 12h8m-8 6h16" />
+      </svg>
+    ),
+  },
+  {
+    title: "Mark as Completed",
+    description: "Finish tasks and track your productivity with one click.",
+    url: "/login",
+    icon: (
+      <svg className="h-9 w-9 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeWidth="1.5" d="M5 13l4 4L19 7" />
+      </svg>
+    ),
+  },
+  {
+    title: "Track Progress",
+    description: "Visualize your task history and completed goals.",
+    url: "/login",
+    icon: (
+      <svg className="h-9 w-9 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeWidth="1.5" d="M4 4v16h16V4H4zm4 12h2v2H8v-2zm4-6h2v8h-2V10zm4-4h2v12h-2V6z" />
+      </svg>
+    ),
+  },
+]
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
@@ -150,11 +74,11 @@ export default function Home() {
       <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-12">
         <div className="relative flex flex-col items-center gap-6">
           <h1 className="relative text-center text-4xl leading-[125%] font-bold text-gray-900 dark:text-gray-200">
-            Build fast with us
+            To do or not to do?
           </h1>
           <span className="inline-flex flex-wrap items-center justify-center gap-2.5 text-center">
             <span className="inline text-xl text-gray-600 dark:text-gray-400">
-              Your app is ready, start building with
+              That is out of the question!
             </span>
             <span className="relative inline-flex items-center gap-2">
               <Image
@@ -165,11 +89,11 @@ export default function Home() {
                 height={24}
               />
               <span className="relative w-fit text-xl font-semibold whitespace-nowrap text-[#111928] dark:text-white">
-                Flowbite React
+                TaskMD
               </span>
             </span>
             <h2 className="inline text-xl text-gray-600 dark:text-gray-400">
-              now.
+              is here to take all clear all doubts
             </h2>
           </span>
         </div>
