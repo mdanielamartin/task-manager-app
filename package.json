@@ -18,7 +18,8 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.61.1",
     "sweetalert2": "^11.22.2",
-    "yup": "^1.6.1"
+    "yup": "^1.6.1",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

@@ -1,4 +1,5 @@
 "use client"
+import useUserStore from "@/store/userStore";
 import { List, ListItem, TextInput, Textarea, Button, Label, Checkbox } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
@@ -12,7 +13,7 @@ const TaskDashboard = () => {
     const slug = Number(params.slug)
 
     const [editing, setEditing] = useState<number | null>(null)
-
+    const { printsomething } = useUserStore()
     const taskSchema = yup.object().shape({
         name: yup.string().min(1).max(80, "Task name cannot exceed 80 characters").required("Task must have a name"),
         description: yup.string().max(255, "Task description cannot exceed 500 characters.")
@@ -44,6 +45,7 @@ const TaskDashboard = () => {
     return (
 
         <div className="flex flex-col justify-center px-4 sm:px-8 py-6 sm:py-10 mx-auto max-w-4xl">
+            <h1>{printsomething()}</h1>
             <div className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 px-4 py-6 w-full shadow-sm">
                 <form className="mx-auto p-4">
                     <div className="grid grid-cols-1 grid-rows-3 sm:grid-cols-1 sm:grid-rows-3 gap-x-4 gap-y-0">
