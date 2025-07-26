@@ -64,7 +64,7 @@ venv/
 
 # Flask & database migrations
 instance/
-migrations/
+
 
 class-list.json
 pid
