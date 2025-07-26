@@ -1,13 +1,15 @@
 "use client"
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Spinner } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation'
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import useUserStore from "@/store/userStore";
+
 
 const Login = () => {
   const router = useRouter()
+  const { isLoading, login } = useUserStore()
   const loginSchema = yup.object().shape({
     email: yup.string().email("Invalid email format").required("Please type your email address"),
     password: yup.string().min(8, "Password must be at least 8 characters long.").required("A password is required"),
@@ -20,9 +22,15 @@ const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(loginSchema) })
 
+  const onSubmit = async (data: loginData) => {
+    const res = await login(data)
+    if (res) {
+      router.push("/dashboard")
+    }
+  }
   return (
     <div className="flex h-screen items-center justify-center">
-      <form  className="flex max-w-md max-w-lg w-full flex-col gap-4 rounded-md p-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-lg w-full flex-col gap-4 rounded-md p-6">
         <h1 className="font-bold text-2xl text-center">LOGIN</h1>
         <div>
           <div className="mb-2 block">
@@ -38,7 +46,13 @@ const Login = () => {
           <TextInput id="password1" type="password" required {...register("password")} />
           <p className="text-red-500">{errors.password?.message}</p>
         </div>
-        <Button type="submit">Submit</Button>
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>
+            <Spinner color="purple" />
+          </div>
+        ) : (
+          <Button color="purple" type="submit">Login</Button>
+        )}
       </form>
     </div>
   );
