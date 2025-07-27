@@ -2,7 +2,7 @@
 import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, DarkThemeToggle } from "flowbite-react";
 import Link from "next/link";
 
-export function PublicNavbar() {
+export function UserNavbar() {
     return (
         <Navbar fluid rounded className="p-2 bg-stone-50 shadow-xl">
             <NavbarBrand as={Link} href="/">
@@ -17,10 +17,10 @@ export function PublicNavbar() {
                 <NavbarLink href="/instructions">
                     Instructions
                 </NavbarLink>
-                <NavbarLink as={Link} href="/signup">
-                    Create Account
+                <NavbarLink>
+                    Logout
                 </NavbarLink>
-                <NavbarLink as={Link} href="/login">Login</NavbarLink>
+
                 <DarkThemeToggle className="text-xl justify-center flex items-center" />
             </NavbarCollapse>
         </Navbar>

@@ -7,10 +7,12 @@ import { useRouter } from 'next/navigation'
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import useUserStore from "@/store/userStore";
+import { showSignUpError } from "@/utils/alerts";
+import { useEffect } from "react";
 
 const SignUp = () => {
   const router = useRouter()
-  const { signup, isLoading } = useUserStore()
+  const { signup, isLoading, error } = useUserStore()
   const signupSchema = yup.object().shape({
     email: yup.string().email("Invalid email format").required("Please type your email address"),
     password: yup.string().min(8, "Password must be at least 8 characters long.").required("A password is required"),
@@ -27,11 +29,24 @@ const SignUp = () => {
     const res = await signup(data)
     if (res) {
       router.push("/dashboard")
-    } else {
-      console.log("something went wrong")
     }
   }
 
+
+  useEffect(() => {
+    if (error) {
+      showSignUpError(error)
+    }
+  }, [error])
+
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px' }}>
+        <Spinner color="purple" />
+      </div>
+    )
+
+  }
   return (
     <div className="flex h-screen items-center justify-center">
       <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-lg w-full p-6 flex-col gap-4">

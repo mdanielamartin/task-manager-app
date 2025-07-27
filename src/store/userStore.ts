@@ -3,7 +3,6 @@ import { create } from "zustand";
 const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface UserState {
-  token: string | null;
   error: string | null;
   isLoading: boolean;
   login: (data: loginFormat) => Promise<boolean>;
@@ -15,7 +14,6 @@ interface UserState {
 type loginFormat = { email: string; password: string };
 
 const useUserStore = create<UserState>((set) => ({
-  token: typeof window !== "undefined" ? sessionStorage.getItem("token") : null,
   error: null,
   isLoading: false,
 
@@ -50,7 +48,6 @@ const useUserStore = create<UserState>((set) => ({
   logout: () => {
     document.cookie =
       "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=Lax";
-    set({ token: null });
     sessionStorage.clear();
   },
 
@@ -64,16 +61,14 @@ const useUserStore = create<UserState>((set) => ({
           email: registerData["email"],
           password: registerData["password"],
         }),
+        credentials: "include",
       });
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData || "Login failed");
+        throw new Error(errorData || "Sign Up failed");
       }
-      const userData = await res.json();
-      const token = userData.access_token;
-      document.cookie = `access_token=${token}; Path=/; Secure; SameSite=Lax`;
-      set({ isLoading: false });
+
       return true;
     } catch (err: unknown) {
       let message = "Unexpected error";

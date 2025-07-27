@@ -5,11 +5,12 @@ import { useRouter } from 'next/navigation'
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import useUserStore from "@/store/userStore";
-
+import { showLoginError } from "@/utils/alerts";
+import { useEffect } from "react";
 
 const Login = () => {
   const router = useRouter()
-  const { isLoading, login } = useUserStore()
+  const { isLoading, login, error } = useUserStore()
   const loginSchema = yup.object().shape({
     email: yup.string().email("Invalid email format").required("Please type your email address"),
     password: yup.string().min(8, "Password must be at least 8 characters long.").required("A password is required"),
@@ -27,6 +28,22 @@ const Login = () => {
     if (res) {
       router.push("/dashboard")
     }
+  }
+
+
+  useEffect(() => {
+    if (error) {
+      showLoginError(error)
+    }
+  }, [error])
+
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px' }}>
+        <Spinner color="purple" />
+      </div>
+    )
+
   }
   return (
     <div className="flex h-screen items-center justify-center">
