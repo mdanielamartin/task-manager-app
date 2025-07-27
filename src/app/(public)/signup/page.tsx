@@ -1,7 +1,6 @@
 
 "use client"
-import { Button, Checkbox, Label, TextInput, Spinner } from "flowbite-react";
-import Link from "next/link";
+import { Button, Label, TextInput, Spinner } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation'
 import * as yup from "yup"
@@ -48,9 +47,9 @@ const SignUp = () => {
 
   }
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-start justify-center">
       <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-lg w-full p-6 flex-col gap-4">
-        <h1 className="font-bold text-2xl text-center">REGISTER</h1>
+        <h1 className="font-bold text-2xl text-center  dark:text-white">REGISTER</h1>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email2">Your email</Label>
@@ -72,15 +71,6 @@ const SignUp = () => {
           </div>
           <TextInput id="repeat-password" type="password" required shadow {...register("passwordConfirm")} />
           <p className="text-red-500">{errors.passwordConfirm?.message}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Checkbox id="agree" />
-          <Label htmlFor="agree" className="flex">
-            I agree with the&nbsp;
-            <Link href="#" className="text-cyan-600 hover:underline dark:text-cyan-500">
-              terms and conditions
-            </Link>
-          </Label>
         </div>
         {isLoading ? (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}>

@@ -1,8 +1,13 @@
 "use client"
-import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, DarkThemeToggle } from "flowbite-react";
+import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle, DarkThemeToggle, Button } from "flowbite-react";
 import Link from "next/link";
+import useUserStore from "@/store/userStore";
 
 export function UserNavbar() {
+    const { logout } = useUserStore()
+    const logoutButton = async () => {
+        await logout()
+    }
     return (
         <Navbar fluid rounded className="p-2 bg-stone-50 shadow-xl">
             <NavbarBrand as={Link} href="/">
@@ -18,9 +23,8 @@ export function UserNavbar() {
                     Instructions
                 </NavbarLink>
                 <NavbarLink>
-                    Logout
+                    <Button color="red" onClick={logoutButton} className="text-xl justify-center flex items-center">Logout</Button>
                 </NavbarLink>
-
                 <DarkThemeToggle className="text-xl justify-center flex items-center" />
             </NavbarCollapse>
         </Navbar>

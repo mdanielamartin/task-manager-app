@@ -2,7 +2,7 @@
 import bcrypt
 
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_jwt, verify_jwt_in_request, set_access_cookies
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_jwt, verify_jwt_in_request, set_access_cookies, unset_jwt_cookies
 from jwt.exceptions import ExpiredSignatureError
 from marshmallow import ValidationError
 from .utils.validation import UserSchema, TaskSchema
@@ -66,6 +66,12 @@ def login_user():
         return resp, 200
     except Exception as e:
         return jsonify(str(e)), 500
+
+@user.route("/logout", methods=["POST"])
+def logout():
+    response = jsonify({"msg": "Logout successful"})
+    unset_jwt_cookies(response)
+    return response
 
 
 @task.route("/add", methods=["POST"])

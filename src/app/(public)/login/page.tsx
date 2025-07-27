@@ -46,9 +46,9 @@ const Login = () => {
 
   }
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-start justify-center">
       <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-lg w-full flex-col gap-4 rounded-md p-6">
-        <h1 className="font-bold text-2xl text-center">LOGIN</h1>
+        <h1 className="font-bold text-2xl text-center dark:text-white">LOGIN</h1>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email1">Your email</Label>
