@@ -2,7 +2,7 @@
 import bcrypt
 
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_jwt, verify_jwt_in_request
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_jwt, verify_jwt_in_request, set_access_cookies
 from jwt.exceptions import ExpiredSignatureError
 from marshmallow import ValidationError
 from .utils.validation import UserSchema, TaskSchema
@@ -61,12 +61,14 @@ def login_user():
         if not verify_password:
             return jsonify("Invalid email/password combination"), 401
         access_token = create_access_token(identity=str(user.id),additional_claims={"email": user.email}, expires_delta=timedelta(hours=1))
-        return jsonify({"access_token": access_token}), 200
+        resp = jsonify({'login': True})
+        set_access_cookies(resp, access_token)
+        return resp, 200
     except Exception as e:
         return jsonify(str(e)), 500
 
 
-@task.route("/", methods=["POST"])
+@task.route("/add", methods=["POST"])
 @jwt_required()
 def add_task():
     user_id = get_jwt_identity()
@@ -75,9 +77,9 @@ def add_task():
         return jsonify("User not found"), 404
     try:
         data = request.json
-        data["user_id"] = user_id
         task_schema = TaskSchema()
         validated_data = task_schema.load(data)
+        validated_data["user_id"] = user_id
     except ValidationError as e:
         return jsonify(e.messages), 400
     try:
@@ -98,7 +100,6 @@ def update_task(id):
     try:
         data = request.json
         task_schema = TaskSchema()
-        data["user_id"] = user_id
         validated_data = task_schema.load(data)
     except ValidationError as e:
         return jsonify(e.messages), 400

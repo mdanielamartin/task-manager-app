@@ -26,15 +26,13 @@ const useUserStore = create<UserState>((set) => ({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
+        credentials: "include",
       });
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData || "Login failed");
       }
-      const userData = await res.json();
-      const token = userData.access_token;
-      document.cookie = `Authorization=Bearer ${token}; Path=/; Secure; SameSite=Strict`;
-      set({ isLoading: false, token: token });
+      set({ isLoading: false });
       return true;
     } catch (err: unknown) {
       let message = "Unexpected error";
@@ -51,7 +49,7 @@ const useUserStore = create<UserState>((set) => ({
 
   logout: () => {
     document.cookie =
-      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=Strict";
+      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=Lax";
     set({ token: null });
     sessionStorage.clear();
   },
@@ -74,7 +72,7 @@ const useUserStore = create<UserState>((set) => ({
       }
       const userData = await res.json();
       const token = userData.access_token;
-      document.cookie = `Authorization=Bearer ${token}; Path=/; Secure; SameSite=Strict`;
+      document.cookie = `access_token=${token}; Path=/; Secure; SameSite=Lax`;
       set({ isLoading: false });
       return true;
     } catch (err: unknown) {
