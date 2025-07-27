@@ -3,21 +3,20 @@ import { create } from "zustand";
 const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface UserState {
-  token: string | null;
   error: string | null;
   isLoading: boolean;
+  status: boolean;
   login: (data: loginFormat) => Promise<boolean>;
   signup: (data: loginFormat) => Promise<boolean>;
   clearError: () => void;
-  logout: () => void;
-  printsomething: () => string;
+  logout: () => Promise<void>;
 }
 type loginFormat = { email: string; password: string };
 
 const useUserStore = create<UserState>((set) => ({
-  token: typeof window !== "undefined" ? sessionStorage.getItem("token") : null,
   error: null,
   isLoading: false,
+  status: true,
 
   login: async (loginData) => {
     set({ isLoading: true, error: null });
@@ -32,14 +31,14 @@ const useUserStore = create<UserState>((set) => ({
         const errorData = await res.json();
         throw new Error(errorData || "Login failed");
       }
-      set({ isLoading: false });
+      set({ isLoading: false, status: true });
       return true;
     } catch (err: unknown) {
       let message = "Unexpected error";
       if (err instanceof Error) {
         message = err.message;
       }
-      set({ error: message, isLoading: false });
+      set({ error: message, isLoading: false, status: false });
       return false;
     }
   },
@@ -47,11 +46,26 @@ const useUserStore = create<UserState>((set) => ({
     set({ error: null });
   },
 
-  logout: () => {
-    document.cookie =
-      "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=Lax";
-    set({ token: null });
-    sessionStorage.clear();
+  logout: async () => {
+    try {
+      const res = await fetch(`${backendURL}user/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData || "Logout failed");
+      }
+      set({ isLoading: false, status: false });
+    } catch (err: unknown) {
+      let message = "Unexpected error";
+      if (err instanceof Error) {
+        message = err.message;
+        set({ error: message, isLoading: false });
+      }
+    }
   },
 
   signup: async (registerData) => {
@@ -64,16 +78,14 @@ const useUserStore = create<UserState>((set) => ({
           email: registerData["email"],
           password: registerData["password"],
         }),
+        credentials: "include",
       });
 
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData || "Login failed");
+        throw new Error(errorData || "Sign Up failed");
       }
-      const userData = await res.json();
-      const token = userData.access_token;
-      document.cookie = `access_token=${token}; Path=/; Secure; SameSite=Lax`;
-      set({ isLoading: false });
+      set({ isLoading: false, status: true });
       return true;
     } catch (err: unknown) {
       let message = "Unexpected error";
@@ -83,10 +95,6 @@ const useUserStore = create<UserState>((set) => ({
       set({ error: message, isLoading: false });
       return false;
     }
-  },
-
-  printsomething: () => {
-    return "Hello from the store";
   },
 }));
 

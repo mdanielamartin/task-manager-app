@@ -5,12 +5,15 @@ import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState, useEffect } from "react";
 import useTaskStore from "@/store/taskStore";
+import useUserStore from "@/store/userStore";
+import { useRouter } from "next/navigation";
 
 
 const TaskDashboard = () => {
-
+    const router = useRouter()
     const [editing, setEditing] = useState<number | null>(null)
     const { addTask, deleteTask, updateTask, getTasks, setDoneTasks, setIncompleteTasks, tasks } = useTaskStore()
+    const { status } = useUserStore()
     const [selection, setSelection] = useState<number[]>([])
     const taskSchema = yup.object().shape({
         name: yup.string().min(1).max(80, "Task name cannot exceed 80 characters").required("Task must have a name"),
@@ -80,10 +83,17 @@ const TaskDashboard = () => {
         onLoad()
     }, [getTasks])
 
+
+    useEffect(() => {
+        if (!status) {
+            router.push("/login")
+        }
+    }, [status, router])
+
     return (
 
         <div className="flex flex-col justify-center px-4 sm:px-8 py-6 sm:py-4 mx-auto max-w-4xl bg-gray-50 dark:bg-gray-800">
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl  px-4 py-6 w-full shadow-sm">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl  px-4 py-4 border w-full shadow-sm">
                 <form onSubmit={handleSubmit(onSubmitTask)} className="mx-auto p-4">
                     <div className="grid grid-cols-1 grid-rows-3 sm:grid-cols-1 sm:grid-rows-3 gap-x-4 gap-y-0">
                         <div className=" row-start-1 items-center ">
@@ -118,17 +128,17 @@ const TaskDashboard = () => {
             </div>
             <br />
             <div className="bg-gray-50 dark:bg-gray-800 h-auto w-full rounded-xl mx-auto  my-2 justify-center">
-                <div className="flex flex-wrap justify-center mb-6">
+                <div className=" justify-center space-y-5  mb-6">
                     <Button
                         color="alternative"
-                        className="w-full sm:w-1/2 shadow-md hover:shadow-lg dark:shadow-green-700"
+                        className="w-full shadow-md hover:shadow-lg hover:shadow-green-700 dark:shadow-green-700"
                         onClick={markDone}
                     >
                         Done!
                     </Button>
                     <Button
                         color="alternative"
-                        className="w-full sm:w-1/2 shadow-md hover:shadow-lg dark:shadow-red-700"
+                        className="w-full shadow-md hover:shadow-lg  hover:shadow-red-700 dark:shadow-red-700"
                         onClick={markIncomplete}
                     >
                         Mark as Undone
