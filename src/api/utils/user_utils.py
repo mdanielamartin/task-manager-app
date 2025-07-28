@@ -1,4 +1,4 @@
-from api.models import User
+from ..models import User
 
 def check_user(id):
     if not id:

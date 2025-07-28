@@ -1,18 +1,19 @@
 import { ThemeModeScript } from "flowbite-react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+//import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeInit } from "../.flowbite-react/init";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+// ${geistSans.variable} ${geistMono.variable}
 
 export const metadata: Metadata = {
   title: "TaskMD",
@@ -30,7 +31,7 @@ export default function RootLayout({
         <ThemeModeScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 dark:bg-gray-900 min-h-screen w-full overflow-x-hidden`}
+        className={`antialiased bg-gray-50 dark:bg-gray-900 min-h-screen w-full overflow-x-hidden`}
       >
         <div className="max-w-full overflow-hidden">
           <ThemeInit />
