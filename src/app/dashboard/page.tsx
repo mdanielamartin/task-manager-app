@@ -212,10 +212,10 @@ const TaskDashboard = () => {
 
                             :
 
-                            <ListItem key={task.id} className="text-2xl text-bold bg-white dark:bg-gray-900  border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white rounded-lg pl-4 py-5 border flex flex-col sm:flex-row">
+                            <ListItem key={task.id} className="text-2xl text-bold bg-white dark:bg-gray-900  border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white rounded-lg pl-4 py-5 border grid-cols-10 items-center flex">
 
 
-                                <div className="flex items-center gap-4 flex-shrink-0 w-[40%] min-w-[280px]">
+                                <div className="flex col-span-6 items-center gap-4 flex-shrink-0 w-[60%]">
 
                                     <div className="p-2">
                                         <Checkbox
@@ -235,7 +235,7 @@ const TaskDashboard = () => {
 
                                 </div>
 
-                                <div className="flex justify-center items-center w-[10%]">
+                                <div className="flex justify-center items-center w-[20%] col-span-2">
                                     {task.status ? (
                                         <svg className="w-8 h-8 text-green-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                             <path fillRule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clipRule="evenodd" />
@@ -250,7 +250,7 @@ const TaskDashboard = () => {
                                 </div>
 
 
-                                <div className="max-w-[160px] sm:max-w-none flex flex-wrap justify-end gap-2">
+                                <div className="sm:max-w-none flex flex-wrap justify-end gap-2">
                                     <Button
                                         color="red"
                                         className="shadow-md hover:shadow-lg dark:shadow-red-700 p-1 sm:p-2 md:p-3 text-xs sm:text-sm md:text-base"
@@ -263,10 +263,10 @@ const TaskDashboard = () => {
                                     </Button>
                                     <Button
                                         color="yellow"
-                                        className="shadow-md hover:shadow-lg dark:shadow-yellow-700"
+                                        className="shadow-md hover:shadow-lg dark:shadow-yellow-700 p-1 sm:p-2 md:p-3 text-xs sm:text-sm md:text-base col-span-2"
                                         onClick={() => editingRequest(task, task.id)}
                                     >
-                                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                             <path fillRule="evenodd" d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z" clipRule="evenodd" />
                                             <path fillRule="evenodd" d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z" clipRule="evenodd" />
                                         </svg>

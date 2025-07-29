@@ -41,7 +41,7 @@ const SignUp = () => {
   if (isLoading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '400px' }}>
-        <Spinner color="purple" />
+        <Spinner className="fill-purple-600 dark:fill-white" />
       </div>
     )
 
