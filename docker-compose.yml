@@ -16,12 +16,17 @@ services:
     environment:
       - FLASK_ENV=development
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     image: postgres:16
     container_name: postgres_taskmg
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "mdmpereira", "-d", "taskmg"]
+      interval: 5s
+      retries: 5
     environment:
       POSTGRES_USER: mdmpereira
       POSTGRES_PASSWORD: nina

@@ -8,6 +8,6 @@ marshmallow==4.0.0
 PyJWT==2.10.1
 PyJWT==2.10.1
 python-dotenv==1.1.1
-python_bcrypt==0.3.2
+bcrypt==4.1.2
 SQLAlchemy==2.0.41
 psycopg2-binary

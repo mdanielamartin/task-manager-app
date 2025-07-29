@@ -40,7 +40,9 @@ def add_new_user():
         db.session.add(new_user)
         db.session.commit()
         access_token = create_access_token(identity=str(new_user.id),additional_claims={"email": new_user.email}, expires_delta=timedelta(hours=1))
-        return jsonify({"access_token": access_token}), 200
+        resp = jsonify({'login': True})
+        set_access_cookies(resp, access_token)
+        return resp, 200
     except Exception as e:
         return jsonify(str(e)), 500
 
