@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 
 load_dotenv()
-JWT_SECRET = os.getenv("JWT_SECRET_KEY")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    app.config["JWT_SECRET_KEY"] = "secreket"
+    app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
     app.config["JWT_ACCESS_COOKIE_NAME"] = "access_token_cookie"
     app.config["JWT_COOKIE_SAMESITE"] = "None"  # or "Lax" depending on your needs
