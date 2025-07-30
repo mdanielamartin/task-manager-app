@@ -1,6 +1,9 @@
 import os
+import dotenv
+
+DATABASE_URL = os.getenv("DATA_BASE_URL")
 class Config:
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "postgresql://mdmpereira:nina@db:5432/taskmg"
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TEMPLATES_AUTO_RELOAD = True
