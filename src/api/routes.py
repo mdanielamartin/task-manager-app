@@ -17,7 +17,9 @@ from datetime import timedelta
 user = Blueprint("user", __name__)
 task = Blueprint("task", __name__)
 
-@user.route("/", methods=["GET"])
+
+
+@user.route("/", methods=["GET","HEAD"])
 def say_hello():
     try:
         return jsonify("Hello"), 200
