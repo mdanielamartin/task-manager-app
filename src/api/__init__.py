@@ -3,7 +3,7 @@ from flask import Flask
 from .extensions import db,jwt
 from .config import Config
 from .routes import user
-from .routes import task
+from .routes import task, base
 from dotenv import load_dotenv
 
 from flask_cors import CORS
@@ -26,6 +26,7 @@ def create_app():
     db.init_app(app)
     app.register_blueprint(user, url_prefix="/user")
     app.register_blueprint(task, url_prefix="/task")
+    app.register_blueprint(base, url_prefix="/")
     with app.app_context():
         db.create_all()
     return app

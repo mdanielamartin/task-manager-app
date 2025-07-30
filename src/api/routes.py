@@ -14,10 +14,16 @@ from datetime import timedelta
 
 
 
+base = Blueprint("base", __name__)
 user = Blueprint("user", __name__)
 task = Blueprint("task", __name__)
 
-
+@base.route("/", methods=["GET","HEAD"])
+def say_hi():
+    try:
+        return jsonify("Hi"), 200
+    except Exception as e:
+        return jsonify(e),500
 
 @user.route("/", methods=["GET","HEAD"])
 def say_hello():
