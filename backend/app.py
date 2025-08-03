@@ -1,9 +1,9 @@
 import os
 from dotenv import load_dotenv
-from factory import create_app
+from .factory import create_app
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from extensions import db
+from .extensions import db
 
 load_dotenv()
 

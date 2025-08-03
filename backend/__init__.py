@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 
 load_dotenv()
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY","keyfordevelopment")
 FRONTEND_URL = os.getenv("FRONTEND_URL")
 def create_app():
     app = Flask(__name__)

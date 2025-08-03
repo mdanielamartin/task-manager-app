@@ -1,8 +1,7 @@
 import { create } from "zustand";
 
 const backendURL =
-  process.env.NEXT_PUBLIC_BACKEND_URL ||
-  "https://task-manager-app-dhly.onrender.com/";
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/";
 
 interface UserState {
   error: string | null;

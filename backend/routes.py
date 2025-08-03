@@ -5,10 +5,10 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, get_jwt, verify_jwt_in_request, set_access_cookies, unset_jwt_cookies
 from jwt.exceptions import ExpiredSignatureError
 from marshmallow import ValidationError
-from utils.validation import UserSchema, TaskSchema
-from utils.user_utils import check_user
-from extensions import db
-from models import User, Task
+from backend.utils.validation import UserSchema, TaskSchema
+from backend.utils.user_utils import check_user
+from .extensions import db
+from .models import User, Task
 from datetime import timedelta
 
 

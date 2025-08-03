@@ -1,9 +1,9 @@
 import os
 from flask import Flask
-from extensions import db,jwt
-from config import Config
-from routes import user
-from routes import task, base
+from .extensions import db,jwt
+from .config import Config
+from .routes import user
+from .routes import task, base
 from dotenv import load_dotenv
 
 from flask_cors import CORS
@@ -11,7 +11,7 @@ from flask_cors import CORS
 load_dotenv()
 
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "MYDEVELOPMENTKEYHERE")
-FRONTEND_URL = os.environ.get("FRONTEND_URL", "https://task-manager-app-front.onrender.com")
+FRONTEND_URL = os.environ.get("FRONTEND_URL", " http://localhost:3000")
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
