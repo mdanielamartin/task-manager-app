@@ -11,7 +11,7 @@ from flask_cors import CORS
 load_dotenv()
 
 JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "MYDEVELOPMENTKEYHERE")
-FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3000")
+FRONTEND_URL = os.environ.get("FRONTEND_URL", "https://task-manager-app-front.onrender.com")
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
