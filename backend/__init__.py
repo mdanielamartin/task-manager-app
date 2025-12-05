@@ -21,7 +21,7 @@ def create_app():
     app.config["JWT_COOKIE_SECURE"] = True
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     jwt.init_app(app)
-    CORS(app, supports_credentials=True, origins=["http://localhost:3000"])
+    CORS(app, supports_credentials=True, origins=["http://localhost:3000", "https://task-manager-app-front.onrender.com"])
 
     db.init_app(app)
     app.register_blueprint(user, url_prefix="/user")
